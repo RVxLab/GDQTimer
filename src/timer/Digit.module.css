@@ -1,0 +1,11 @@
+.digit
+{
+    border: 1px solid black;
+    height: 10px;
+    background-color: red;
+}
+
+.enabled
+{
+    background-color: blue;
+}
