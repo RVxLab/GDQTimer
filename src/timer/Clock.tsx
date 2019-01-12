@@ -74,11 +74,14 @@ export class Clock extends React.Component<Props, State> {
         const secondsDisplay = difference.seconds.toString().padStart(2, '0');
         const displayText = `${difference.hours}:${minutesDisplay}:${secondsDisplay}.${difference.milliseconds}`
 
-        const minutesPart1 = Math.min(difference.minutes, 15);
-        const minutesPart2 = Math.max(difference.minutes >> 4, 0);
+        // Only check for 1st 4 bits to be on
+        const minutesPart1 = difference.minutes & 15;
 
-        const secondsPart1 = Math.min(difference.seconds, 15);
-        const secondsPart2 = Math.max(difference.seconds >> 4, 0);
+        // Only check for the 2nd 4 bits to be on
+        const minutesPart2 = (difference.minutes >> 4) & 15;
+
+        const secondsPart1 = difference.seconds & 15;
+        const secondsPart2 = (difference.seconds >> 4) & 15;
 
         return <div>
             <p>{displayText}</p>
