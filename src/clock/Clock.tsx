@@ -4,12 +4,12 @@ import { Column } from './Column';
 import styles from './Clock.module.css';
 
 interface Props {
-    autoStart?: boolean;
-    startDate: Date;
+    start?: boolean;
 }
 
 interface State {
     difference: TimeDifference;
+    startDate: Date;
 }
 
 interface TimeDifference {
@@ -21,7 +21,7 @@ interface TimeDifference {
 
 export class Clock extends React.Component<Props, State> {
     public static defaultProps = {
-        autoStart: false,
+        start: false,
     };
 
     public state: State = {
@@ -31,22 +31,31 @@ export class Clock extends React.Component<Props, State> {
             minutes: 0,
             seconds: 0,
         },
+        startDate: new Date(),
     }
 
     private differenceUpdateInterval: any = null;
 
     public componentDidMount() {
-        if (this.props.autoStart) {
-            this.startTimer();
+        if (this.props.start) {
+            this.prepareAndStart();
         }
     }
 
     public componentWillUnmount() {
-        clearInterval(this.differenceUpdateInterval);
+        this.stopTimer();
+    }
+
+    private prepareAndStart(): void {
+        this.setState({
+            startDate: new Date(),
+        }, () => {
+            this.startTimer();
+        });
     }
 
     private startTimer(): void {
-        clearInterval(this.differenceUpdateInterval);
+
         this.differenceUpdateInterval = setInterval(() => {
             const difference = this.getDifference();
 
@@ -56,10 +65,14 @@ export class Clock extends React.Component<Props, State> {
         }, 100);
     }
 
+    private stopTimer() {
+        clearInterval(this.differenceUpdateInterval);
+    }
+
     private getDifference(): TimeDifference {
         const now = Date.now();
 
-        let diff = now - this.props.startDate.getTime();
+        let diff = now - this.state.startDate.getTime();
 
         const hours = Math.floor(diff / 1000 / 60 / 60);
         diff -= hours * 1000 * 60 * 60;

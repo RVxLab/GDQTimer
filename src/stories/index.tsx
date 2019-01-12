@@ -1,15 +1,13 @@
 import React from 'react';
 
-import { action } from '@storybook/addon-actions';
-import { linkTo } from '@storybook/addon-links';
 import { storiesOf } from '@storybook/react';
-import { Clock } from '../timer/Clock';
-import { Column } from '../timer/Column';
-import { Digit } from '../timer/Digit';
+import { Clock } from '../clock/Clock';
+import { Column } from '../clock/Column';
+import { Digit } from '../clock/Digit';
 
 storiesOf('Clock', module)
-    .add('clock without auto start', () => <Clock startDate={new Date()} />)
-    .add('clock with auto start', () => <Clock startDate={new Date()} autoStart />);
+    .add('clock without auto start', () => <Clock />)
+    .add('clock with auto start', () => <Clock start />);
 
 storiesOf('Column', module)
     .add('column with no digits enabled', () => <Column timeSection={0} />)
