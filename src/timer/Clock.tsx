@@ -4,6 +4,7 @@ import { Column } from './Column';
 import styles from './Clock.module.css';
 
 interface Props {
+    autoStart?: boolean;
     startDate: Date;
 }
 
@@ -19,6 +20,10 @@ interface TimeDifference {
 }
 
 export class Clock extends React.Component<Props, State> {
+    public static defaultProps = {
+        autoStart: false,
+    };
+
     public state: State = {
         difference: {
             hours: 0,
@@ -31,6 +36,16 @@ export class Clock extends React.Component<Props, State> {
     private differenceUpdateInterval: any = null;
 
     public componentDidMount() {
+        if (this.props.autoStart) {
+            this.startTimer();
+        }
+    }
+
+    public componentWillUnmount() {
+        clearInterval(this.differenceUpdateInterval);
+    }
+
+    private startTimer(): void {
         clearInterval(this.differenceUpdateInterval);
         this.differenceUpdateInterval = setInterval(() => {
             const difference = this.getDifference();
@@ -39,10 +54,6 @@ export class Clock extends React.Component<Props, State> {
                 difference,
             });
         }, 100);
-    }
-
-    public componentWillUnmount() {
-        clearInterval(this.differenceUpdateInterval);
     }
 
     private getDifference(): TimeDifference {

@@ -8,7 +8,8 @@ import { Column } from '../timer/Column';
 import { Digit } from '../timer/Digit';
 
 storiesOf('Clock', module)
-    .add('Clock', () => <Clock startDate={new Date()} />);
+    .add('clock without auto start', () => <Clock startDate={new Date()} />)
+    .add('clock with auto start', () => <Clock startDate={new Date()} autoStart />);
 
 storiesOf('Column', module)
     .add('column with no digits enabled', () => <Column timeSection={0} />)
