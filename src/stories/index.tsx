@@ -8,7 +8,7 @@ import { Digit } from '../clock/Digit';
 
 storiesOf('Clock', module)
     .add('clock without auto start', () => <Clock />)
-    .add('clock with auto start', () => <Clock start />);
+    .add('clock with auto start', () => <Clock started />);
 
 storiesOf('ClockWithControl', module)
     .add('clock with controls', () => <ClockWithControls />);
