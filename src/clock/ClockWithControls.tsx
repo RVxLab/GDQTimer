@@ -1,5 +1,9 @@
 import React, {Component, Fragment} from 'react';
-import { Clock } from './Clock';
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
+import {faPlayCircle, faPauseCircle, faStopCircle} from '@fortawesome/free-regular-svg-icons';
+
+import {Clock} from './Clock';
+import styles from './ClockWithControls.module.css';
 
 interface State {
     started: boolean;
@@ -37,14 +41,12 @@ export class ClockWithControls extends Component<any, State> {
         });
     }
 
-    private getStartPauseButtonText = (): string => {
-        if (this.state.paused) {
-            return 'Resume';
-        } else if (this.state.started) {
-            return 'Pause';
+    private getStartPauseButtonIcon = (): JSX.Element => {
+        if (this.state.started && !this.state.paused) {
+            return <FontAwesomeIcon icon={faPauseCircle} size="3x" />;
         }
 
-        return 'Start';
+        return <FontAwesomeIcon icon={faPlayCircle} size="3x" />;
     }
 
     private getStartPauseButtonOnClickFunc = (): () => void => {
@@ -58,15 +60,17 @@ export class ClockWithControls extends Component<any, State> {
     }
 
     private renderButtons = (): JSX.Element => {
-        const startPauseButton = <button onClick={this.getStartPauseButtonOnClickFunc()}>
-            {this.getStartPauseButtonText()}
-        </button>;
+        const startPauseButton = <div className={styles.iconButton} onClick={this.getStartPauseButtonOnClickFunc()}>
+            {this.getStartPauseButtonIcon()}
+        </div>
 
-        const stopButton = <button onClick={this.stop}>Stop</button>;
+        const stopButton = <div className={styles.iconButton} onClick={this.stop}>
+            <FontAwesomeIcon icon={faStopCircle} size="3x" />
+        </div>;
 
         return <Fragment>
             {startPauseButton}
-            {stopButton}
+            {this.state.started && stopButton}
         </Fragment>
     };
 

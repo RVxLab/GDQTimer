@@ -1,0 +1,11 @@
+.iconButton
+{
+    cursor: pointer;
+    margin-top: 5px;
+    display: inline-block;
+}
+
+.iconButton:not(:last-child)
+{
+    margin-right: 5px;
+}
