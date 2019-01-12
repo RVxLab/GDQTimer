@@ -46,6 +46,14 @@ export class Clock extends React.Component<Props, State> {
         this.stopTimer();
     }
 
+    public componentDidUpdate(prevProps: Props) {
+        if (prevProps.start && !this.props.start) {
+            this.stopTimer();
+        } else if (!prevProps.start && this.props.start) {
+            this.prepareAndStart();
+        }
+    }
+
     private prepareAndStart(): void {
         this.setState({
             startDate: new Date(),

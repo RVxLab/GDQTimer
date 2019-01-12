@@ -2,12 +2,16 @@ import React from 'react';
 
 import { storiesOf } from '@storybook/react';
 import { Clock } from '../clock/Clock';
+import { ClockWithControls } from '../clock/ClockWithControls';
 import { Column } from '../clock/Column';
 import { Digit } from '../clock/Digit';
 
 storiesOf('Clock', module)
     .add('clock without auto start', () => <Clock />)
     .add('clock with auto start', () => <Clock start />);
+
+storiesOf('ClockWithControl', module)
+    .add('clock with controls', () => <ClockWithControls />);
 
 storiesOf('Column', module)
     .add('column with no digits enabled', () => <Column timeSection={0} />)

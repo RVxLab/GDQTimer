@@ -9,7 +9,8 @@
         "quotemark": [ true, "single", "jsx-double", "avoid-escape" ],
         "interface-name": [ true, "never-prefix" ],
         "member-ordering": false,
-        "no-bitwise": false
+        "no-bitwise": false,
+        "arrow-parens": false
     },
     "rulesDirectory": []
 }
