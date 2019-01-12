@@ -2,3 +2,8 @@
 {
     flex: 1;
 }
+
+.column:not(:last-child)
+{
+    margin-right: 1px;
+}
