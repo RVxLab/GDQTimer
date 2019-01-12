@@ -72,7 +72,12 @@ export class Clock extends React.Component<Props, State> {
 
         const minutesDisplay = difference.minutes.toString().padStart(2, '0');
         const secondsDisplay = difference.seconds.toString().padStart(2, '0');
-        const displayText = `${difference.hours}:${minutesDisplay}:${secondsDisplay}.${difference.milliseconds}`
+
+        const displayTextParts = [ `${minutesDisplay}:${secondsDisplay}.${difference.milliseconds}` ];
+
+        if (difference.hours > 0) {
+            displayTextParts.unshift(difference.hours.toString());
+        }
 
         // Only check for 1st 4 bits to be on
         const minutesPart1 = difference.minutes & 15;
@@ -84,7 +89,7 @@ export class Clock extends React.Component<Props, State> {
         const secondsPart2 = (difference.seconds >> 4) & 15;
 
         return <div>
-            <p>{displayText}</p>
+            <p>{displayTextParts.join(':')}</p>
 
             <div className={styles.clock}>
                 <Column timeSection={difference.hours} />
