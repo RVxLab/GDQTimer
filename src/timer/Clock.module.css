@@ -1,5 +1,24 @@
 .clock
 {
+    position: relative;
     min-width: 200px;
     display: flex;
+    background-color: black;
+    padding: 1px;
+}
+
+.clockText
+{
+    font-family: 'Roboto Mono', monospace;
+    font-weight: 700;
+    font-size: 3rem;
+    color: #3adeff;
+    text-shadow: 0 0 5px #97eeff;
+
+    margin: 0;
+    padding: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }

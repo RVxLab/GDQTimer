@@ -88,17 +88,17 @@ export class Clock extends React.Component<Props, State> {
         const secondsPart1 = difference.seconds & 15;
         const secondsPart2 = (difference.seconds >> 4) & 15;
 
-        return <div>
-            <p>{displayTextParts.join(':')}</p>
+        return <div className={styles.clock}>
+            <p className={styles.clockText}>
+                {displayTextParts.join(':')}
+            </p>
 
-            <div className={styles.clock}>
-                <Column timeSection={difference.hours} />
-                <Column timeSection={minutesPart2} />
-                <Column timeSection={minutesPart1} />
-                <Column timeSection={secondsPart2} />
-                <Column timeSection={secondsPart1} />
-                <Column timeSection={difference.milliseconds} />
-            </div>
+            <Column timeSection={difference.hours} />
+            <Column timeSection={minutesPart2} />
+            <Column timeSection={minutesPart1} />
+            <Column timeSection={secondsPart2} />
+            <Column timeSection={secondsPart1} />
+            <Column timeSection={difference.milliseconds} />
         </div>;
     };
 }

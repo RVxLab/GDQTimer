@@ -1,9 +1,9 @@
 .digit
 {
     border: 1px solid black;
-    border-radius: 2px;
+    border-radius: 1px;
     height: 10px;
-    background-color: #666;
+    background-color: rgb(0, 39, 30);
 
     transition: background-color 150ms ease-in-out;
 }
@@ -15,5 +15,5 @@
 
 .enabled
 {
-    background-color: #66e2ce;
+    background-color: rgb(0, 107, 82);
 }
