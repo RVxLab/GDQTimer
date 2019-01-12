@@ -1,0 +1,39 @@
+.app
+{
+    min-width: 100vw;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.clockContainer
+{
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 5px;
+}
+
+.innerClockContainer
+{
+    width: 100%;
+    max-width: 600px;
+}
+
+.footer
+{
+    padding: 5px;
+}
+
+.footer a
+{
+    display: flex;
+    color: black;
+    align-items: center;
+}
+
+.footer a:hover
+{
+    text-decoration: none;
+}
