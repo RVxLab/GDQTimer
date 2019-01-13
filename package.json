@@ -2,6 +2,7 @@
   "name": "gdq-timer",
   "version": "0.1.0",
   "private": true,
+  "homepage": "/GDQTimer",
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^1.2.12",
     "@fortawesome/free-brands-svg-icons": "^5.6.3",
