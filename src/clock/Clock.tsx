@@ -9,8 +9,8 @@ interface Props {
 }
 
 interface State {
-    difference: TimeDifference;
-    pastDifference: TimeDifference,
+    difference: number;
+    pastDifference: number;
     startDate: Date;
 }
 
@@ -18,7 +18,6 @@ interface TimeDifference {
     hours: number;
     milliseconds: number;
     minutes: number;
-    rawMilliseconds: number;
     seconds: number;
 }
 
@@ -28,17 +27,9 @@ export class Clock extends React.Component<Props, State> {
         started: false,
     };
 
-    private zeroDifference: TimeDifference = {
-        hours: 0,
-        milliseconds: 0,
-        minutes: 0,
-        rawMilliseconds: 0,
-        seconds: 0,
-    };
-
     public state: State = {
-        difference: {...this.zeroDifference},
-        pastDifference: {...this.zeroDifference},
+        difference: 0,
+        pastDifference: 0,
         startDate: new Date(),
     }
 
@@ -93,31 +84,26 @@ export class Clock extends React.Component<Props, State> {
         this.stopTimer();
 
         const {pastDifference, difference} = this.state;
-        const newPastDifference = this.calculateTimeDifference(pastDifference.rawMilliseconds + difference.rawMilliseconds);
 
         this.setState({
-            difference: {...this.zeroDifference},
-            pastDifference: newPastDifference,
+            difference: 0,
+            pastDifference: difference + pastDifference,
         });
     }
 
     private resetTimer = (): void => {
         this.setState({
-            pastDifference: {...this.zeroDifference},
-            difference: {...this.zeroDifference}
+            pastDifference: 0,
+            difference: 0
         });
     }
 
-    private getDifference = (): TimeDifference => {
+    private getDifference = (): number => {
         const now = Date.now();
-        const diff = now - this.state.startDate.getTime();
-
-        return this.calculateTimeDifference(diff);
+        return now - this.state.startDate.getTime();
     }
 
     private calculateTimeDifference = (milliseconds: number): TimeDifference => {
-        const mSec = milliseconds;
-
         const hours = Math.floor(milliseconds / 1000 / 60 / 60);
         milliseconds -= hours * 1000 * 60 * 60;
 
@@ -131,7 +117,6 @@ export class Clock extends React.Component<Props, State> {
             hours,
             milliseconds: Math.floor(milliseconds / 100),
             minutes,
-            rawMilliseconds: mSec,
             seconds,
         }
     }
@@ -139,7 +124,7 @@ export class Clock extends React.Component<Props, State> {
     private getActualTimeDifference = (): TimeDifference => {
         const {pastDifference, difference} = this.state;
 
-        return this.calculateTimeDifference(pastDifference.rawMilliseconds + difference.rawMilliseconds);
+        return this.calculateTimeDifference(pastDifference + difference);
     }
 
     public render = () => {
