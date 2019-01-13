@@ -14,7 +14,7 @@ interface State {
     startDate: Date;
 }
 
-interface TimeDifference {
+interface ElapsedTime {
     hours: number;
     milliseconds: number;
     minutes: number;
@@ -103,7 +103,7 @@ export class Clock extends React.Component<Props, State> {
         return now - this.state.startDate.getTime();
     }
 
-    private calculateTimeDifference = (milliseconds: number): TimeDifference => {
+    private calculateTimeDifference = (milliseconds: number): ElapsedTime => {
         const hours = Math.floor(milliseconds / 1000 / 60 / 60);
         milliseconds -= hours * 1000 * 60 * 60;
 
@@ -121,7 +121,7 @@ export class Clock extends React.Component<Props, State> {
         }
     }
 
-    private getActualTimeDifference = (): TimeDifference => {
+    private getActualTimeDifference = (): ElapsedTime => {
         const {pastDifference, difference} = this.state;
 
         return this.calculateTimeDifference(pastDifference + difference);
