@@ -1,7 +1,13 @@
 import React from 'react';
+import classnames from 'classnames';
+
 import { Column } from './Column';
 
-import styles from './Clock.module.css';
+import { ThemeContext, themes } from '../context/ThemeContext';
+
+import baseStyles from './Clock.base.module.css';
+import agdq2019Styles from './Clock.agdq2019.module.css';
+import sgdq2018Styles from './Clock.sgdq2018.module.css';
 
 interface Props {
     paused?: boolean;
@@ -148,17 +154,25 @@ export class Clock extends React.Component<Props, State> {
         const secondsPart1 = difference.seconds & 15;
         const secondsPart2 = (difference.seconds >> 4) & 15;
 
-        return <div className={styles.clock}>
-            <p className={styles.clockText}>
-                {displayTextParts.join(':')}
-            </p>
+        return <ThemeContext.Consumer>
+            {({theme}) => <div className={baseStyles.clock}>
+                <p className={classnames(
+                    baseStyles.clockText,
+                    {
+                        [agdq2019Styles.clockText]: theme === themes.agdq2019,
+                        [sgdq2018Styles.clockText]: theme === themes.sgdq2018,
+                    }
+                )}>
+                    {displayTextParts.join(':')}
+                </p>
 
-            <Column timeSection={difference.hours} />
-            <Column timeSection={minutesPart2} />
-            <Column timeSection={minutesPart1} />
-            <Column timeSection={secondsPart2} />
-            <Column timeSection={secondsPart1} />
-            <Column timeSection={difference.milliseconds} />
-        </div>;
+                <Column timeSection={difference.hours} />
+                <Column timeSection={minutesPart2} />
+                <Column timeSection={minutesPart1} />
+                <Column timeSection={secondsPart2} />
+                <Column timeSection={secondsPart1} />
+                <Column timeSection={difference.milliseconds} />
+            </div>}
+        </ThemeContext.Consumer>;
     };
 }

@@ -9,3 +9,10 @@
 {
     margin-right: 5px;
 }
+
+.controls
+{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}

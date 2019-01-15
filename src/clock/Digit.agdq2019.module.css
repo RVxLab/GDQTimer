@@ -1,0 +1,10 @@
+.digit
+{
+    border-color: black;
+    background-color: rgb(0, 39, 30);
+}
+
+.enabled
+{
+    background-color: rgb(0, 107, 82);
+}

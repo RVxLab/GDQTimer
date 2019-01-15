@@ -3,6 +3,9 @@ import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import {faPlayCircle, faPauseCircle, faStopCircle} from '@fortawesome/free-regular-svg-icons';
 
 import {Clock} from './Clock';
+
+import {ThemeContext, themes} from './../context/ThemeContext';
+
 import styles from './ClockWithControls.module.css';
 
 interface State {
@@ -68,15 +71,23 @@ export class ClockWithControls extends Component<any, State> {
             <FontAwesomeIcon icon={faStopCircle} size="3x" />
         </div>;
 
-        return <Fragment>
+        return <div>
             {startPauseButton}
             {this.state.started && stopButton}
-        </Fragment>
+        </div>
     };
 
-    public render = () => <div>
-        <Clock started={this.state.started} paused={this.state.paused} />
+    public render = () => <ThemeContext.Consumer>
+        {({ changeTheme, theme }) => <Fragment>
+            <Clock started={this.state.started} paused={this.state.paused} />
 
-        {this.renderButtons()}
-    </div>;
+            <div className={styles.controls}>
+                {this.renderButtons()}
+
+                <select onChange={e => changeTheme(e.target.value)}>
+                    {Object.keys(themes).map(t => <option key={t} value={t} selected={theme === t}>{t}</option>)}
+                </select>
+            </div>
+        </Fragment>}
+    </ThemeContext.Consumer>;
 }

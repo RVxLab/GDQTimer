@@ -1,9 +1,9 @@
 .digit
 {
-    border: 1px solid black;
+    border-width: 1px;
+    border-style: solid;
     border-radius: 1px;
     height: 10px;
-    background-color: rgb(0, 39, 30);
 
     transition: background-color 150ms ease-in-out;
 }
@@ -11,9 +11,4 @@
 .digit:not(:last-child)
 {
     margin-bottom: 1px;
-}
-
-.enabled
-{
-    background-color: rgb(0, 107, 82);
 }
