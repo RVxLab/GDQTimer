@@ -2,14 +2,14 @@ import React, {Component} from 'react';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import {faGithub} from '@fortawesome/free-brands-svg-icons';
 
-import {ThemeContext, themes, isThemeValid} from './context/ThemeContext';
+import {ThemeContext, isThemeValid, defaultTheme} from './context/ThemeContext';
 import {ClockWithControls} from './clock/ClockWithControls';
 
 import styles from './App.module.css';
 
 export class App extends Component {
     state = {
-        theme: themes.agdq2019,
+        theme: defaultTheme,
     }
 
     changeTheme = (theme: string) => {

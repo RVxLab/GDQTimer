@@ -3,7 +3,7 @@ import classnames from 'classnames';
 
 import { Column } from './Column';
 
-import { ThemeContext, themes } from '../context/ThemeContext';
+import { ThemeContext, themes, findTheme } from '../context/ThemeContext';
 
 import baseStyles from './Clock.base.module.css';
 import agdq2019Styles from './Clock.agdq2019.module.css';
@@ -159,8 +159,8 @@ export class Clock extends React.Component<Props, State> {
                 <p className={classnames(
                     baseStyles.clockText,
                     {
-                        [agdq2019Styles.clockText]: theme === themes.agdq2019,
-                        [sgdq2018Styles.clockText]: theme === themes.sgdq2018,
+                        [agdq2019Styles.clockText]: theme === findTheme('agdq2019').key,
+                        [sgdq2018Styles.clockText]: theme === findTheme('sgdq2018').key,
                     }
                 )}>
                     {displayTextParts.join(':')}

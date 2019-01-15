@@ -84,8 +84,8 @@ export class ClockWithControls extends Component<any, State> {
             <div className={styles.controls}>
                 {this.renderButtons()}
 
-                <select onChange={e => changeTheme(e.target.value)}>
-                    {Object.keys(themes).map(t => <option key={t} value={t} selected={theme === t}>{t}</option>)}
+                <select className={styles.themeSelector} onChange={e => changeTheme(e.target.value)}>
+                    {themes.map(t => <option key={t.key} value={t.key} selected={theme === t.key}>{t.display}</option>)}
                 </select>
             </div>
         </Fragment>}

@@ -16,3 +16,10 @@
     align-items: center;
     justify-content: space-between;
 }
+
+.themeSelector
+{
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
