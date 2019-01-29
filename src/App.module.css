@@ -1,14 +1,5 @@
-.app
-{
-    min-width: 100vw;
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-}
-
 .clockContainer
 {
-    flex: 1;
     display: flex;
     align-items: center;
     justify-content: center;

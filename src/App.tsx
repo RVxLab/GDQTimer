@@ -7,7 +7,15 @@ import {ClockWithControls} from './clock/ClockWithControls';
 
 import styles from './App.module.css';
 
-export class App extends Component {
+interface Props {
+    includeFooter?: boolean;
+}
+
+interface State {
+    theme: any;
+}
+
+export class App extends Component<Props, State> {
     state = {
         theme: defaultTheme,
     }
@@ -29,10 +37,10 @@ export class App extends Component {
             </div>
         </div>
 
-        <footer className={styles.footer}>
+        {this.props.includeFooter && <footer className={styles.footer}>
             <a href="https://github.com/RVxLab/GDQTimer" target="_blank" rel="noopener,noreferrer">
                 <FontAwesomeIcon icon={faGithub} size="2x" />
             </a>
-        </footer>
+        </footer>}
     </div>
     }
